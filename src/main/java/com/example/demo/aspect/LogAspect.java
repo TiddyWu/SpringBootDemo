@@ -1,12 +1,12 @@
 package com.example.demo.aspect;
 
-import com.example.demo.DemoApplication;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -16,9 +16,16 @@ import java.util.Arrays;
 
 @Aspect
 @Component
+@Slf4j
 public class LogAspect {
 
-    Logger logger = LoggerFactory.getLogger(DemoApplication.class);
+
+    private ApplicationArguments arguments;
+
+    @Autowired
+    public void setArguments(ApplicationArguments arguments) {
+        this.arguments = arguments;
+    }
 
     @Pointcut("execution(* com.example.demo.controller.*.*(..))")
     public void webLog() {}
@@ -28,13 +35,12 @@ public class LogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-
-        logger.error("logger");
-        System.out.println("URL : " + request.getRequestURL().toString());
-        System.out.println("HTTP_METHOD : " + request.getMethod());
-        System.out.println("IP : " + request.getRemoteAddr());
-        System.out.println("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        System.out.println(joinPoint.toLongString());
-        System.out.println("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+        log.info("----------------------------------------------------------------------\n");
+        log.info("URL : {} \n", request.getRequestURL().toString());
+        log.info("HTTP_METHOD : {}\n", request.getMethod());
+        log.info("IP : {}\n", request.getRemoteAddr());
+        log.info("CLASS_METHOD : {}.{}\n", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        log.info("ARGS : {}\n", Arrays.toString(joinPoint.getArgs()));
+        log.info("args: {}\n", arguments.getOptionValues("mode"));
     }
 }

@@ -1,0 +1,5 @@
+
+spring:
+  profiles: test
+logging:
+  config: src/main/resources/logging/logback-dev.xml

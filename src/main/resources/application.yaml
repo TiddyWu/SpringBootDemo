@@ -1,0 +1,13 @@
+
+#default production profile
+logging:
+  config: classpath:/logging/logback-prod.xml
+
+---
+
+#default devo profile
+
+spring:
+  profiles: devo
+logging:
+  config: src/main/resources/logging/logback-dev.xml
