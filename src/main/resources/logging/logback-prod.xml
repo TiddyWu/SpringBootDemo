@@ -46,14 +46,17 @@
         </rollingPolicy>
     </appender>
 
-
-    <logger name="com.example.demo.aspect.LogAspect" level="info" additivity="false">
+    <!-- do something on the aspect of beforeController -->
+    <logger name="com.example.demo.aspect.ControllerEntryAspect" level="info" additivity="false">
         <appender-ref ref="SERVICE-LOG" />
-        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- log interceptor when for all requests -->
+    <logger name="com.example.demo.interceptor.LogInterceptor" level="info" additivity="false">
+        <appender-ref ref="SERVICE-LOG" />
     </logger>
 
     <root level="info">
         <appender-ref ref="APPLICATION-LOG" />
-        <appender-ref ref="STDOUT" />
     </root>
 </configuration>

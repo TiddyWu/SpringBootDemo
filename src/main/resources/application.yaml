@@ -1,7 +1,13 @@
 
 #default production profile
+spring:
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
 logging:
   config: classpath:/logging/logback-prod.xml
+
 
 ---
 
@@ -9,5 +15,9 @@ logging:
 
 spring:
   profiles: devo
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
 logging:
   config: src/main/resources/logging/logback-dev.xml
