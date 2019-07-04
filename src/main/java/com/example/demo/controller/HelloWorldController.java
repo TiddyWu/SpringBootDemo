@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class HelloWorldController {
 
-    @RequestMapping("/hello")
+    @RequestMapping("/")
     public String index() {
         return "index";
     }
+
 
     @GetMapping("/time/{time}")
     @ResponseBody

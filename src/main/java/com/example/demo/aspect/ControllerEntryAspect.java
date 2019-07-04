@@ -1,6 +1,6 @@
 package com.example.demo.aspect;
 
-import lombok.extern.slf4j.Slf4j;
+import com.example.demo.log.LogUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -13,11 +13,12 @@ import java.util.Arrays;
 
 @Aspect
 @Component
-@Slf4j
 public class ControllerEntryAspect {
 
-
     private ApplicationArguments arguments;
+
+    @Autowired
+    private LogUtil log;
 
     @Autowired
     public void setArguments(ApplicationArguments arguments) {
@@ -29,7 +30,11 @@ public class ControllerEntryAspect {
 
     @Before("controllerEntry()")
     public void beforeWebLog(JoinPoint joinPoint) {
-        log.info("CLASS_METHOD : {}.{}()", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
-        log.info("ARGS : {}", Arrays.toString(joinPoint.getArgs()));
+        StringBuilder builder = new StringBuilder();
+        log.append("CLASS_METHOD : ").append(joinPoint.getSignature().getDeclaringTypeName()).append(".")
+            .append(joinPoint.getSignature().getName()).append("()").endLine();
+        log.append("ARGS : ").append(Arrays.toString(joinPoint.getArgs())).endLine();
+        log.logInfo();
     }
+
 }
