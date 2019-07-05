@@ -21,10 +21,13 @@ import java.util.HashMap;
 @Controller
 @Slf4j
 public class DDBController {
+    private Table DDBDemoTable;
 
     @Autowired
     @Qualifier("DDBDemoTable")
-    private Table DDBDemoTable;
+    public void setDDBDemoTable(Table table) {
+        this.DDBDemoTable = table;
+    }
 
 
     @GetMapping("/createTable")
