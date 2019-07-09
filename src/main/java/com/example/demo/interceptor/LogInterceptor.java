@@ -2,7 +2,6 @@ package com.example.demo.interceptor;
 
 import com.example.demo.log.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;

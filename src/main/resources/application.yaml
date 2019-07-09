@@ -5,6 +5,16 @@ spring:
     view:
       suffix: .html
       prefix: /
+  redis:
+    host: 127.0.0.1 #redis server ip address
+    timeout: 10000
+    database: 0 #default
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 logging:
   config: classpath:/logging/logback-prod.xml
 
@@ -19,5 +29,15 @@ spring:
     view:
       suffix: .html
       prefix: /
+  redis:
+    host: 18.139.143.28 #redis server ip address
+    timeout: 10000
+    database: 0 #default
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 logging:
   config: src/main/resources/logging/logback-dev.xml

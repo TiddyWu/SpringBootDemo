@@ -4,7 +4,7 @@
 ## parameter 1: AWS crenditial key
 ## parameter 1: remote server address
 
-#My typical usange is: ./demo_package.sh ~/.ssh/JiaweiwuEC2KeyPair.pem ec2-user@18.139.143.28:/home/ec2-user
+#My typical usange is: ./demo_package.sh ~/.ssh/JiaweiwuEC2KeyPair.pem ec2-user@18.139.143.28:/home/ec2-user/env/spring-boot
 
 
 red=`tput setaf 1`
@@ -29,5 +29,5 @@ else
 fi
 
 echo "${bold}scp package to the server${reset}"
-
+echo "${bold}scp -i ${1} -r target ${2}${reset}"
 scp -i ${1} -r target ${2}

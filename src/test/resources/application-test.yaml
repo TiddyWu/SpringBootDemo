@@ -1,5 +1,16 @@
 
 spring:
   profiles: test
+  redis:
+    host: 127.0.0.1 #redis server ip address
+    password: test
+    timeout: 10000
+    database: 0 #default
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 logging:
   config: src/main/resources/logging/logback-dev.xml
